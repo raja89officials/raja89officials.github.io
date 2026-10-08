@@ -1,0 +1,1029 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>How Online Tracking Works: Cookies, Fingerprints | RAJA89</title>
+<meta name="description" content="How cookies, pixels, device fingerprinting, link decoration, advertising IDs and server-side identity graphs build a profile of you, and what interrupts each.">
+<link rel="canonical" href="https://raja89official.site/tracking.html">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+<meta name="theme-color" content="#07140f">
+<meta name="color-scheme" content="light dark">
+<meta name="author" content="Edi Rahmadani">
+<meta property="article:author" content="Edi Rahmadani">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="icon" type="image/png" sizes="48x48" href="https://raja89official.site/assets/favicon-48.png">
+<link rel="icon" type="image/png" sizes="96x96" href="https://raja89official.site/assets/favicon-96.png">
+<link rel="icon" type="image/png" sizes="144x144" href="https://raja89official.site/assets/favicon-144.png">
+<link rel="apple-touch-icon" href="https://raja89official.site/assets/apple-touch-icon.png">
+<link rel="manifest" href="https://raja89official.site/site.webmanifest">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="RAJA89">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="How Online Tracking Works: Cookies, Fingerprints | RAJA89">
+<meta property="og:description" content="How cookies, pixels, device fingerprinting, link decoration, advertising IDs and server-side identity graphs build a profile of you, and what interrupts each.">
+<meta property="og:url" content="https://raja89official.site/tracking.html">
+<meta property="og:image" content="https://raja89official.site/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="RAJA89 - Data Privacy &amp; Your Digital Footprint">
+<meta property="article:published_time" content="2026-10-08">
+<meta property="article:modified_time" content="2026-10-08">
+<meta property="article:section" content="Data Privacy &amp; Your Digital Footprint">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How Online Tracking Works: Cookies, Fingerprints | RAJA89">
+<meta name="twitter:description" content="How cookies, pixels, device fingerprinting, link decoration, advertising IDs and server-side identity graphs build a profile of you, and what interrupts each.">
+<meta name="twitter:image" content="https://raja89official.site/assets/og.png">
+<meta name="twitter:image:alt" content="RAJA89 - Data Privacy &amp; Your Digital Footprint">
+<link rel="alternate" type="application/xml" href="https://raja89official.site/sitemap.xml" title="Sitemap">
+<link rel="author" href="https://raja89official.site/support.html">
+<style>
+
+/* ---------- reset and tokens ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:5.2rem}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;font-size:1rem;line-height:1.72;overflow-wrap:break-word;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+:root{--bg:#fff;--bg-alt:#f6f8fc;--fg:#141c2b;--muted:#5a6a83;--line:#e2e8f1;--card:#fff;--shadow:0 1px 2px rgba(15,23,42,.05),0 8px 24px -12px rgba(15,23,42,.18);--radius:14px;--radius-sm:10px;--accent:#f5b13d;--accent-2:#34d399;--accent-ink:#a16207;--accent-soft:rgba(245,177,61,.14);--ink:#07140f;--band:#0c2a21;--btn-ink:#2a1a02;--dark-accent:#f5b13d;--warn:#b45309;--ok:#15803d;--maxw:60rem}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b0f16;--bg-alt:#111826;--fg:#e8eef7;--muted:#98a8bf;--line:#222d3f;--card:#121a28;--accent-ink:var(--dark-accent);--warn:#fbbf24;--ok:#4ade80;--shadow:0 1px 2px rgba(0,0,0,.4),0 12px 32px -16px rgba(0,0,0,.7)}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+img,svg{max-width:100%;height:auto}
+a{color:var(--accent-ink);text-underline-offset:.18em;text-decoration-thickness:1px}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+.visually-hidden{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:1rem;top:1rem;z-index:99;background:var(--bg);color:var(--fg);padding:.7rem 1.1rem;border:2px solid var(--accent-ink);border-radius:var(--radius-sm)}
+.wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 clamp(1rem,4vw,1.75rem)}
+
+/* ---------- header and no-JS drawer navigation ---------- */
+header.site{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--ink) 96%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.09)}
+header.site .bar{display:flex;align-items:center;gap:.75rem;min-height:3.6rem}
+.brand{display:flex;align-items:center;gap:.6rem;color:#fff;text-decoration:none;padding:.35rem 0;flex:none;order:2;max-width:46vw}
+.brand picture{display:block}
+.brand img.logo{display:block;height:clamp(1.7rem,4.6vw,2.35rem);width:auto}
+.brand img.logo-icon{display:none;height:2.1rem;width:auto}
+.brand:hover{text-decoration:none;opacity:.92}
+.bar-spacer{margin-left:auto}
+.btn-official{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:var(--btn-ink);font-weight:750;font-size:.83rem;letter-spacing:.01em;text-decoration:none;padding:.6rem .95rem;border-radius:999px;min-height:2.5rem;flex:none;white-space:nowrap;box-shadow:0 6px 18px -8px var(--accent)}
+.btn-official .label-short{display:none}
+.btn-official:hover{text-decoration:none;filter:brightness(1.06);transform:translateY(-1px)}
+.btn-official:active{transform:translateY(0)}
+.btn-official svg{width:1rem;height:1rem;flex:none}
+.btn-official.big{font-size:1rem;padding:.85rem 1.5rem;min-height:3.1rem;box-shadow:0 10px 30px -10px var(--accent)}
+.btn-official.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.3);box-shadow:none}
+.btn-official.ghost:hover{background:rgba(255,255,255,.08)}
+.nav-toggle{position:absolute;opacity:0;width:1px;height:1px;margin:0;pointer-events:none;order:1}
+.nav-btn{display:none;align-items:center;gap:.5rem;order:3;margin-left:auto;padding:.55rem .9rem;border:1px solid rgba(255,255,255,.22);border-radius:999px;color:#dbe6f4;font-size:.8rem;font-weight:600;cursor:pointer;user-select:none;min-height:2.5rem}
+.nav-btn:hover{background:rgba(255,255,255,.08)}
+.nav-btn svg{width:1.15rem;height:1.15rem;flex:none}
+.nav-btn .close-icon{display:none}
+.nav-toggle:focus-visible ~ .nav-btn{outline:3px solid var(--accent);outline-offset:2px}
+.nav-toggle:checked ~ .nav-btn .open-icon{display:none}
+.nav-toggle:checked ~ .nav-btn .close-icon{display:block}
+nav.main-nav{display:flex;align-items:center;gap:.25rem;order:4;margin-left:1rem}
+nav.main-nav a{color:#c6d3e4;text-decoration:none;font-size:.85rem;font-weight:500;padding:.55rem .7rem;border-radius:999px;white-space:nowrap}
+nav.main-nav a:hover{color:#fff;background:rgba(255,255,255,.09);text-decoration:none}
+nav.main-nav a[aria-current="page"]{color:#fff;background:rgba(255,255,255,.14);font-weight:650}
+.bar .btn-official{order:4;margin-left:.6rem}
+@media (max-width:62rem){
+ .nav-btn{display:inline-flex}
+ nav.main-nav{display:none;position:absolute;left:0;right:0;top:100%;margin:0;flex-direction:column;align-items:stretch;gap:0;background:var(--ink);border-bottom:1px solid rgba(255,255,255,.1);box-shadow:0 24px 40px -24px rgba(0,0,0,.75);padding:.35rem 0 .8rem;max-height:calc(100vh - 3.6rem);overflow-y:auto}
+ .nav-toggle:checked ~ nav.main-nav{display:flex}
+ nav.main-nav a{padding:.95rem clamp(1rem,4vw,1.75rem);border-radius:0;font-size:.95rem;border-bottom:1px solid rgba(255,255,255,.06)}
+ nav.main-nav a[aria-current="page"]{background:rgba(255,255,255,.08);box-shadow:inset 3px 0 0 var(--accent)}
+ .bar .btn-official{padding:.6rem .85rem;font-size:.8rem}
+ .bar .btn-official .label-long{display:none}
+ .bar .btn-official .label-short{display:inline}
+}
+@media (max-width:30rem){ .bar .btn-official .label-short{display:none} .bar .btn-official{padding:.6rem .7rem} }
+@media (max-width:26rem){ .brand{max-width:38vw} }
+
+/* ---------- hero ---------- */
+.hero{position:relative;color:#fff;background:linear-gradient(155deg,var(--ink) 0%,var(--band) 62%,var(--ink) 100%);padding:clamp(2.2rem,7vw,4.2rem) 0 clamp(2rem,6vw,3.4rem);overflow:hidden}
+.hero::after{content:"";position:absolute;inset:auto -20% -60% auto;width:46rem;height:46rem;background:radial-gradient(circle,var(--accent-soft),transparent 62%);pointer-events:none}
+.hero .wrap{position:relative;z-index:1}
+.kicker{display:inline-flex;align-items:center;gap:.5rem;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:750;color:var(--accent);background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);padding:.4rem .8rem;border-radius:999px;margin-bottom:1.1rem}
+.hero h1{margin:0 0 .9rem;font-size:clamp(1.7rem,5.4vw,2.9rem);line-height:1.1;letter-spacing:-.025em;font-weight:800;max-width:34ch;text-wrap:balance}
+.hero .lede{max-width:48rem;color:#cfdbeb;font-size:clamp(1rem,2.4vw,1.14rem);line-height:1.7}
+.hero .lede p{margin:0 0 .85rem}
+.hero .lede p:last-child{margin-bottom:0}
+.hero .lede a{color:#fff;text-decoration-color:rgba(255,255,255,.45)}
+.meta{display:flex;flex-wrap:wrap;gap:.5rem .9rem;margin:1.6rem 0 0;padding:0;list-style:none;font-size:.8rem;color:#9db0c7}
+.meta span{display:inline-flex;align-items:center;gap:.45rem}
+.meta span::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent);opacity:.85}
+.hero .actions{margin-top:1.7rem;display:flex;flex-wrap:wrap;align-items:center;gap:.7rem}
+.hero .actions .aside{color:#93a5bd;font-size:.79rem;max-width:24rem}
+.hero-figure{margin:2.2rem 0 0;max-width:46rem}
+.hero-figure img{display:block;width:100%;height:auto;border-radius:var(--radius);border:1px solid rgba(255,255,255,.14);box-shadow:0 24px 60px -30px rgba(0,0,0,.85)}
+
+/* ---------- figures ---------- */
+figure{margin:0}
+.inline-figure{margin:1.8rem 0;max-width:40rem}
+.inline-figure img{display:block;width:100%;height:auto;border-radius:var(--radius);border:1px solid var(--line);box-shadow:var(--shadow)}
+.hero-figure figcaption,.inline-figure figcaption{margin-top:.6rem;font-size:.82rem;line-height:1.55}
+.hero-figure figcaption{color:#93a5bd}
+.inline-figure figcaption{color:var(--muted)}
+
+/* ---------- breadcrumb ---------- */
+.crumbs{margin:1.35rem 0 -.35rem;font-size:.79rem}
+.crumbs ol{list-style:none;display:flex;flex-wrap:wrap;gap:.4rem;margin:0;padding:0;color:var(--muted)}
+.crumbs a{color:var(--muted);text-decoration:none}
+.crumbs a:hover{color:var(--accent-ink);text-decoration:underline}
+.crumbs li::after{content:"/";margin-left:.4rem;opacity:.45}
+.crumbs li:last-child::after{content:""}
+
+/* ---------- long-form typography ---------- */
+main{display:block;padding-bottom:1rem}
+section.topic{padding-top:1.4rem;margin-top:2.8rem;border-top:1px solid var(--line)}
+section.topic:first-of-type{border-top:0;margin-top:1.8rem;padding-top:0}
+h2{font-size:clamp(1.35rem,4.2vw,2rem);line-height:1.18;letter-spacing:-.02em;margin:2.3rem 0 .9rem;font-weight:800;text-wrap:balance}
+h3{font-size:clamp(1.1rem,3vw,1.32rem);line-height:1.3;letter-spacing:-.01em;margin:2rem 0 .55rem;font-weight:700;text-wrap:balance}
+h4{font-size:1.02rem;margin:1.5rem 0 .4rem;font-weight:700}
+h5{font-size:.95rem;margin:1.2rem 0 .35rem;color:var(--muted);font-weight:700}
+p,ul,ol{margin:0 0 1.05rem}
+li{margin:.42rem 0}
+li>ul,li>ol{margin:.4rem 0 .2rem}
+ul,ol{padding-left:1.3rem}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.87em;background:var(--bg-alt);border:1px solid var(--line);border-radius:6px;padding:.12em .38em;word-break:break-word}
+kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.85em;border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;padding:.08em .38em;background:var(--bg-alt)}
+blockquote{margin:1.6rem 0;padding:.3rem 1.2rem;border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:0 var(--radius-sm) var(--radius-sm) 0;color:var(--fg)}
+blockquote p:last-child{margin-bottom:0}
+hr{border:0;border-top:1px solid var(--line);margin:2.2rem 0}
+
+/* ---------- tables: cards on phones, grid on desktop ---------- */
+.tablewrap{margin:0 0 1.4rem;border:1px solid var(--line);border-radius:var(--radius);overflow-x:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;background:var(--card);box-shadow:var(--shadow)}
+.tablewrap::-webkit-scrollbar{height:9px}
+.tablewrap::-webkit-scrollbar-thumb{background:var(--line);border-radius:99px}
+table{width:100%;border-collapse:collapse;font-size:.92rem}
+th,td{padding:.7rem .85rem;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+thead th{background:var(--bg-alt);font-weight:700;font-size:.85rem;letter-spacing:.01em}
+tbody tr:last-child th,tbody tr:last-child td{border-bottom:0}
+table.facts th[scope="row"]{width:13rem;background:var(--bg-alt);font-weight:650}
+table.facts tbody tr:last-child td{border-bottom:0}
+@media (min-width:44.01rem){
+ /* A short first column keeps the two-column list tables readable. */
+ table:not(.facts){min-width:34rem}
+ table.facts{min-width:30rem}
+}
+@media (max-width:44rem){
+ .tablewrap{border:0;box-shadow:none;background:transparent;overflow:visible}
+ table,thead,tbody,tr,th,td{display:block;width:100%;min-width:0}
+ table,table.facts{min-width:0;width:100%}
+ thead{position:absolute;left:-9999px}
+ tbody tr,table.facts tr{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:.9rem;padding:.3rem .15rem;overflow:hidden}
+ td,tbody th{border:0;border-bottom:1px solid var(--line);padding:.65rem .95rem}
+ td:last-child,tbody tr>:last-child{border-bottom:0}
+ td::before{content:attr(data-label);display:block;font-size:.7rem;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);font-weight:750;margin-bottom:.2rem}
+ td:not([data-label])::before{content:none}
+ table.facts th[scope="row"]{width:auto;background:var(--bg-alt);border-bottom:1px solid var(--line)}
+ table.facts th[scope="row"]::before{content:none}
+ td:empty{display:none}
+}
+
+/* ---------- callouts, takeaways, cards ---------- */
+.callout{background:var(--accent-soft);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:0 var(--radius) var(--radius) 0;padding:1.1rem 1.25rem;margin:1.7rem 0}
+.callout p:last-child,.callout ul:last-child,.callout ol:last-child{margin-bottom:0}
+.callout.warn{background:color-mix(in srgb,var(--warn) 10%,transparent);border-left-color:var(--warn)}
+.callout.ok{background:color-mix(in srgb,var(--ok) 10%,transparent);border-left-color:var(--ok)}
+.callout h3,.callout h4{margin-top:0}
+.takeaways{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.3rem 1.4rem;margin:2rem 0}
+.takeaways h3{margin:0 0 .7rem;font-size:.73rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-ink);font-weight:800}
+.takeaways ul{margin:0;padding-left:1.2rem}
+.takeaways li{margin:.5rem 0}
+details.sources{margin:1.6rem 0 .4rem;border:1px solid var(--line);border-radius:var(--radius);background:var(--card);overflow:hidden}
+details.sources summary{cursor:pointer;padding:.85rem 1.1rem;font-size:.86rem;font-weight:650;color:var(--muted);list-style:none;display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:2.9rem}
+details.sources summary::-webkit-details-marker{display:none}
+details.sources summary::after{content:"+";font-size:1.15rem;color:var(--accent-ink);font-weight:700}
+details.sources[open] summary::after{content:"\2212"}
+details.sources summary:hover{background:var(--bg-alt)}
+details.sources ul{margin:0 0 1rem;padding:0 1.2rem 0 2.2rem;font-size:.89rem}
+details.sources li{margin:.45rem 0}
+details.sources a{word-break:break-word}
+.related{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.3rem 1.4rem;margin:2.6rem 0 0}
+.related h2{margin:0 0 .9rem;font-size:.73rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-ink);font-weight:800}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:.9rem;margin:0;padding:0;list-style:none}
+.cards li{margin:0}
+.card-link{display:block;height:100%;padding:1rem 1.1rem;border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--bg);text-decoration:none;transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease}
+.card-link:hover{transform:translateY(-2px);border-color:var(--accent);box-shadow:var(--shadow);text-decoration:none}
+.card-link strong{display:block;color:var(--accent-ink);font-size:1rem;margin-bottom:.3rem;letter-spacing:-.01em}
+.card-link span{display:block;color:var(--muted);font-size:.87rem;line-height:1.55}
+.card-link .go{display:inline-block;margin-top:.6rem;font-size:.8rem;font-weight:700;color:var(--accent-ink)}
+.trust{background:var(--bg-alt);border:1px solid var(--line);border-radius:var(--radius);padding:1.4rem clamp(1.1rem,3vw,1.8rem);margin:3rem 0 0}
+.trust h2{margin-top:0}
+.trust h3{margin-top:1.8rem}
+.contactcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.2rem 1.3rem;margin:1.3rem 0}
+.contactmail{margin:0 0 .55rem;font-size:clamp(1.02rem,3vw,1.2rem);font-weight:700;word-break:break-word}
+.contactmail a{text-decoration:none;border-bottom:2px solid var(--accent)}
+.contactmail a:hover{border-bottom-width:3px;text-decoration:none}
+.contactmeta{margin:0;color:var(--muted);font-size:.88rem;line-height:1.65}
+.trust .callout{margin:1.3rem 0 0}
+.qa{border-top:1px solid var(--line);padding-top:1.2rem;margin-top:1.2rem}
+.qa:first-of-type{border-top:0;padding-top:0;margin-top:1rem}
+.qa h3{margin-top:0;font-size:clamp(1.02rem,2.6vw,1.16rem)}
+.qa p:last-child{margin-bottom:0}
+details.faq{border:1px solid var(--line);border-radius:var(--radius);background:var(--card);margin:0 0 .7rem;box-shadow:var(--shadow);overflow:hidden}
+details.faq summary{cursor:pointer;padding:1rem 1.15rem;font-weight:700;font-size:clamp(1rem,2.5vw,1.1rem);list-style:none;display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;min-height:3rem}
+details.faq summary::-webkit-details-marker{display:none}
+details.faq summary::after{content:"+";color:var(--accent-ink);font-size:1.3rem;line-height:1;font-weight:700;flex:none}
+details.faq[open] summary::after{content:"\2212"}
+details.faq summary:hover{background:var(--bg-alt)}
+details.faq>div{padding:0 1.15rem 1.1rem}
+details.faq>div p:last-child{margin-bottom:0}
+.backtop{font-size:.82rem;margin:1.4rem 0 0}
+
+/* ---------- footer ---------- */
+footer.site{margin-top:3.6rem;background:var(--ink);color:#9db0c7;padding:2.6rem 0;font-size:.87rem}
+footer.site a{color:#d6e2f1;text-decoration:none}
+footer.site a:hover{text-decoration:underline}
+footer.site p{margin:.3rem 0}
+.foot-grid{display:grid;gap:1.8rem;grid-template-columns:1fr}
+@media (min-width:48rem){.foot-grid{grid-template-columns:1.5fr 1fr 1.3fr;gap:2.2rem}}
+.foot-brand{font-weight:800;letter-spacing:.14em;color:#fff;font-size:.95rem}
+.foot-logo{margin:0 0 .5rem}
+.foot-logo picture{display:block}
+.foot-mark{display:block;height:1.9rem;width:auto;opacity:.96}
+.foot-col{min-width:0}
+.foot-topic{color:#cdd9e8}
+.foot-head{margin:0 0 .6rem;color:#fff;font-weight:750;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase}
+.foot-nav ul{list-style:none;margin:0;padding:0}
+.foot-nav li{margin:.34rem 0}
+.foot-note{color:#8496ad;font-size:.82rem;line-height:1.6}
+.foot-official{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);padding:.55rem .9rem;border-radius:999px;font-weight:650;font-size:.85rem;margin-bottom:.5rem}
+.foot-legal{border-top:1px solid rgba(255,255,255,.12);margin-top:1.8rem;padding-top:1.1rem;color:#8496ad;font-size:.8rem}
+@media print{header.site,nav.main-nav,.hero .actions,.related,.crumbs,.nav-btn{display:none}body{color:#000;background:#fff}.hero{background:#fff;color:#000}.hero .lede,.meta{color:#333}figure,figure img{break-inside:avoid}}
+
+</style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Organization",
+   "@id": "https://raja89official.site/#organization",
+   "name": "RAJA89",
+   "alternateName": [
+    "Raja89",
+    "raja89",
+    "RAJA 89",
+    "Raja89 Official"
+   ],
+   "url": "https://raja89official.site/",
+   "founder": {
+    "@id": "https://raja89official.site/support.html#author"
+   },
+   "email": "raja89officials@gmail.com",
+   "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "corrections and reader support",
+    "email": "raja89officials@gmail.com",
+    "url": "https://raja89official.site/support.html",
+    "availableLanguage": [
+     "en"
+    ],
+    "description": "Corrections, factual disputes and reports of a link that now leads somewhere harmful. We cannot recover or unlock accounts, and we do not contact platforms, banks or regulators on anyone's behalf."
+   },
+   "logo": {
+    "@type": "ImageObject",
+    "url": "https://raja89official.site/assets/icon.png",
+    "width": 128,
+    "height": 128
+   },
+   "image": [
+    {
+     "@type": "ImageObject",
+     "url": "https://raja89official.site/assets/logo.png",
+     "width": 260,
+     "height": 108
+    },
+    {
+     "@type": "ImageObject",
+     "url": "https://raja89official.site/assets/og.png",
+     "width": 1200,
+     "height": 630
+    }
+   ],
+   "description": "RAJA89 is a free, independent educational resource on data privacy, published for general readers.",
+   "knowsAbout": [
+    "Data privacy",
+    "Digital footprint",
+    "Online tracking",
+    "Browser privacy",
+    "Mobile app permissions",
+    "Data broker removal",
+    "Data protection rights",
+    "GDPR and CCPA rights",
+    "Digital literacy education"
+   ],
+   "knowsLanguage": "en",
+   "publishingPrinciples": "https://raja89official.site/support.html",
+   "isAccessibleForFree": true,
+   "ethicsPolicy": "https://raja89official.site/support.html#editorial"
+  },
+  {
+   "@type": "WebSite",
+   "@id": "https://raja89official.site/#website",
+   "name": "RAJA89",
+   "alternateName": [
+    "Raja89",
+    "raja89",
+    "RAJA 89",
+    "Raja89 Official"
+   ],
+   "url": "https://raja89official.site/",
+   "inLanguage": "en",
+   "description": "How cookies, pixels, device fingerprinting, link decoration, advertising IDs and server-side identity graphs build a profile of you, and what interrupts each.",
+   "publisher": {
+    "@id": "https://raja89official.site/#organization"
+   },
+   "license": "https://raja89official.site/support.html#reuse"
+  },
+  {
+   "@type": "WebPage",
+   "@id": "https://raja89official.site/tracking.html#webpage",
+   "url": "https://raja89official.site/tracking.html",
+   "name": "How Online Tracking Works: Cookies, Fingerprints | RAJA89",
+   "description": "How cookies, pixels, device fingerprinting, link decoration, advertising IDs and server-side identity graphs build a profile of you, and what interrupts each.",
+   "isPartOf": {
+    "@id": "https://raja89official.site/#website"
+   },
+   "inLanguage": "en",
+   "datePublished": "2026-10-08",
+   "dateModified": "2026-10-08",
+   "primaryImageOfPage": {
+    "@type": "ImageObject",
+    "url": "https://raja89official.site/assets/og.png",
+    "width": 1200,
+    "height": 630
+   },
+   "about": [
+    {
+     "@type": "Thing",
+     "name": "information privacy",
+     "description": "appropriate collection, use and dissemination of personal data in products and services, as well as their protection and related legal and political issues",
+     "sameAs": [
+      "https://www.wikidata.org/wiki/Q456632",
+      "https://en.wikipedia.org/wiki/Special:EntityPage/Q456632"
+     ]
+    },
+    {
+     "@type": "Thing",
+     "name": "information privacy",
+     "description": "appropriate collection, use and dissemination of personal data in products and services, as well as their protection and related legal and political issues",
+     "sameAs": [
+      "https://www.wikidata.org/wiki/Q456632",
+      "https://en.wikipedia.org/wiki/Special:EntityPage/Q456632"
+     ]
+    },
+    {
+     "@type": "Thing",
+     "name": "digital footprint",
+     "description": "one's unique set of traceable digital activities",
+     "sameAs": [
+      "https://www.wikidata.org/wiki/Q845916",
+      "https://en.wikipedia.org/wiki/Special:EntityPage/Q845916"
+     ]
+    },
+    {
+     "@type": "Thing",
+     "name": "web tracking",
+     "description": "practice by which operators of websites collect, store and share information about a particular user's activity on the World Wide Web",
+     "sameAs": [
+      "https://www.wikidata.org/wiki/Q7978844",
+      "https://en.wikipedia.org/wiki/Special:EntityPage/Q7978844"
+     ]
+    },
+    {
+     "@type": "Thing",
+     "name": "device fingerprint",
+     "description": "information collected about a remote computing device for the purpose of full or partial identification",
+     "sameAs": [
+      "https://www.wikidata.org/wiki/Q5267022",
+      "https://en.wikipedia.org/wiki/Special:EntityPage/Q5267022"
+     ]
+    },
+    {
+     "@type": "Thing",
+     "name": "HTTP cookie",
+     "description": "small piece of data sent from a website and stored on the user's computer by the user's web browser",
+     "sameAs": [
+      "https://www.wikidata.org/wiki/Q178995",
+      "https://en.wikipedia.org/wiki/Special:EntityPage/Q178995"
+     ]
+    },
+    {
+     "@type": "Thing",
+     "name": "third-party cookies",
+     "description": "HTTP cookies used principally for web tracking",
+     "sameAs": [
+      "https://www.wikidata.org/wiki/Q124149479",
+      "https://en.wikipedia.org/wiki/Special:EntityPage/Q124149479"
+     ]
+    },
+    {
+     "@type": "Thing",
+     "name": "personal data",
+     "description": "any piece of information about a person that is not publicly known, or that allows identification of that person",
+     "sameAs": [
+      "https://www.wikidata.org/wiki/Q3702971",
+      "https://en.wikipedia.org/wiki/Special:EntityPage/Q3702971"
+     ]
+    },
+    {
+     "@type": "Thing",
+     "name": "privacy policy",
+     "description": "statement or a legal document that discloses some or all of the ways a party gathers, uses, discloses, and manages a customer's or client's data",
+     "sameAs": [
+      "https://www.wikidata.org/wiki/Q1999831",
+      "https://en.wikipedia.org/wiki/Special:EntityPage/Q1999831"
+     ]
+    },
+    {
+     "@type": "Thing",
+     "name": "data protection",
+     "description": "term, subclass of information security",
+     "sameAs": [
+      "https://www.wikidata.org/wiki/Q23647168",
+      "https://en.wikipedia.org/wiki/Special:EntityPage/Q23647168"
+     ]
+    }
+   ],
+   "mentions": [
+    {
+     "@type": "Thing",
+     "name": "General Data Protection Regulation",
+     "description": "European Union regulation on the processing of personal data",
+     "sameAs": [
+      "https://www.wikidata.org/wiki/Q1172506",
+      "https://en.wikipedia.org/wiki/Special:EntityPage/Q1172506"
+     ]
+    },
+    {
+     "@type": "Thing",
+     "name": "California Consumer Privacy Act",
+     "description": "California data privacy law",
+     "sameAs": [
+      "https://www.wikidata.org/wiki/Q60754243",
+      "https://en.wikipedia.org/wiki/Special:EntityPage/Q60754243"
+     ]
+    },
+    {
+     "@type": "Thing",
+     "name": "right to be forgotten",
+     "description": "legal concept",
+     "sameAs": [
+      "https://www.wikidata.org/wiki/Q2961237",
+      "https://en.wikipedia.org/wiki/Special:EntityPage/Q2961237"
+     ]
+    },
+    {
+     "@type": "Thing",
+     "name": "Global Privacy Control",
+     "description": "web technology for signalling legally binding notice to prevent sale of user information",
+     "sameAs": [
+      "https://www.wikidata.org/wiki/Q104830162",
+      "https://en.wikipedia.org/wiki/Special:EntityPage/Q104830162"
+     ]
+    },
+    {
+     "@type": "Thing",
+     "name": "web beacon",
+     "description": "method using server metrics for a served unobtrusive file to ascertain whether a page has been loaded and by whom",
+     "sameAs": [
+      "https://www.wikidata.org/wiki/Q247213",
+      "https://en.wikipedia.org/wiki/Special:EntityPage/Q247213"
+     ]
+    },
+    {
+     "@type": "Thing",
+     "name": "DNS over HTTPS",
+     "description": "protocol to run DNS queries over HTTPS",
+     "sameAs": [
+      "https://www.wikidata.org/wiki/Q50826096",
+      "https://en.wikipedia.org/wiki/Special:EntityPage/Q50826096"
+     ]
+    },
+    {
+     "@type": "Thing",
+     "name": "European Data Protection Board",
+     "description": "body of the European Union ensure that data privacy laws are consistently applied in the EU countries",
+     "sameAs": [
+      "https://www.wikidata.org/wiki/Q26877724",
+      "https://en.wikipedia.org/wiki/Special:EntityPage/Q26877724"
+     ]
+    },
+    {
+     "@type": "Thing",
+     "name": "Federal Trade Commission",
+     "description": "United States federal government agency",
+     "sameAs": [
+      "https://www.wikidata.org/wiki/Q786713",
+      "https://en.wikipedia.org/wiki/Special:EntityPage/Q786713"
+     ]
+    }
+   ],
+   "audience": {
+    "@type": "Audience",
+    "audienceType": "General public, non-specialist readers"
+   },
+   "isAccessibleForFree": true,
+   "keywords": [
+    "RAJA89",
+    "data privacy",
+    "digital footprint",
+    "online tracking",
+    "browser privacy",
+    "app permissions",
+    "data protection rights",
+    "GDPR access request",
+    "CCPA opt out",
+    "data broker removal"
+   ],
+   "author": {
+    "@id": "https://raja89official.site/support.html#author"
+   },
+   "publisher": {
+    "@id": "https://raja89official.site/#organization"
+   },
+   "lastReviewed": "2026-10-08",
+   "sameAs": [
+    "https://raja89official.site/"
+   ]
+  },
+  {
+   "@type": "Article",
+   "@id": "https://raja89official.site/tracking.html#article",
+   "headline": "How Online Tracking Actually Works: A RAJA89 Guide",
+   "description": "How cookies, pixels, device fingerprinting, link decoration, advertising IDs and server-side identity graphs build a profile of you, and what interrupts each.",
+   "image": "https://raja89official.site/assets/og.png",
+   "inLanguage": "en",
+   "datePublished": "2026-10-08",
+   "dateModified": "2026-10-08",
+   "author": {
+    "@id": "https://raja89official.site/support.html#author"
+   },
+   "publisher": {
+    "@id": "https://raja89official.site/#organization"
+   },
+   "mainEntityOfPage": {
+    "@id": "https://raja89official.site/tracking.html#webpage"
+   },
+   "about": [
+    {
+     "@type": "Thing",
+     "name": "information privacy",
+     "description": "appropriate collection, use and dissemination of personal data in products and services, as well as their protection and related legal and political issues",
+     "sameAs": [
+      "https://www.wikidata.org/wiki/Q456632",
+      "https://en.wikipedia.org/wiki/Special:EntityPage/Q456632"
+     ]
+    },
+    {
+     "@type": "Thing",
+     "name": "information privacy",
+     "description": "appropriate collection, use and dissemination of personal data in products and services, as well as their protection and related legal and political issues",
+     "sameAs": [
+      "https://www.wikidata.org/wiki/Q456632",
+      "https://en.wikipedia.org/wiki/Special:EntityPage/Q456632"
+     ]
+    },
+    {
+     "@type": "Thing",
+     "name": "digital footprint",
+     "description": "one's unique set of traceable digital activities",
+     "sameAs": [
+      "https://www.wikidata.org/wiki/Q845916",
+      "https://en.wikipedia.org/wiki/Special:EntityPage/Q845916"
+     ]
+    },
+    {
+     "@type": "Thing",
+     "name": "web tracking",
+     "description": "practice by which operators of websites collect, store and share information about a particular user's activity on the World Wide Web",
+     "sameAs": [
+      "https://www.wikidata.org/wiki/Q7978844",
+      "https://en.wikipedia.org/wiki/Special:EntityPage/Q7978844"
+     ]
+    },
+    {
+     "@type": "Thing",
+     "name": "device fingerprint",
+     "description": "information collected about a remote computing device for the purpose of full or partial identification",
+     "sameAs": [
+      "https://www.wikidata.org/wiki/Q5267022",
+      "https://en.wikipedia.org/wiki/Special:EntityPage/Q5267022"
+     ]
+    },
+    {
+     "@type": "Thing",
+     "name": "HTTP cookie",
+     "description": "small piece of data sent from a website and stored on the user's computer by the user's web browser",
+     "sameAs": [
+      "https://www.wikidata.org/wiki/Q178995",
+      "https://en.wikipedia.org/wiki/Special:EntityPage/Q178995"
+     ]
+    },
+    {
+     "@type": "Thing",
+     "name": "third-party cookies",
+     "description": "HTTP cookies used principally for web tracking",
+     "sameAs": [
+      "https://www.wikidata.org/wiki/Q124149479",
+      "https://en.wikipedia.org/wiki/Special:EntityPage/Q124149479"
+     ]
+    },
+    {
+     "@type": "Thing",
+     "name": "personal data",
+     "description": "any piece of information about a person that is not publicly known, or that allows identification of that person",
+     "sameAs": [
+      "https://www.wikidata.org/wiki/Q3702971",
+      "https://en.wikipedia.org/wiki/Special:EntityPage/Q3702971"
+     ]
+    },
+    {
+     "@type": "Thing",
+     "name": "privacy policy",
+     "description": "statement or a legal document that discloses some or all of the ways a party gathers, uses, discloses, and manages a customer's or client's data",
+     "sameAs": [
+      "https://www.wikidata.org/wiki/Q1999831",
+      "https://en.wikipedia.org/wiki/Special:EntityPage/Q1999831"
+     ]
+    },
+    {
+     "@type": "Thing",
+     "name": "data protection",
+     "description": "term, subclass of information security",
+     "sameAs": [
+      "https://www.wikidata.org/wiki/Q23647168",
+      "https://en.wikipedia.org/wiki/Special:EntityPage/Q23647168"
+     ]
+    }
+   ],
+   "mentions": [
+    {
+     "@type": "Thing",
+     "name": "General Data Protection Regulation",
+     "description": "European Union regulation on the processing of personal data",
+     "sameAs": [
+      "https://www.wikidata.org/wiki/Q1172506",
+      "https://en.wikipedia.org/wiki/Special:EntityPage/Q1172506"
+     ]
+    },
+    {
+     "@type": "Thing",
+     "name": "California Consumer Privacy Act",
+     "description": "California data privacy law",
+     "sameAs": [
+      "https://www.wikidata.org/wiki/Q60754243",
+      "https://en.wikipedia.org/wiki/Special:EntityPage/Q60754243"
+     ]
+    },
+    {
+     "@type": "Thing",
+     "name": "right to be forgotten",
+     "description": "legal concept",
+     "sameAs": [
+      "https://www.wikidata.org/wiki/Q2961237",
+      "https://en.wikipedia.org/wiki/Special:EntityPage/Q2961237"
+     ]
+    },
+    {
+     "@type": "Thing",
+     "name": "Global Privacy Control",
+     "description": "web technology for signalling legally binding notice to prevent sale of user information",
+     "sameAs": [
+      "https://www.wikidata.org/wiki/Q104830162",
+      "https://en.wikipedia.org/wiki/Special:EntityPage/Q104830162"
+     ]
+    },
+    {
+     "@type": "Thing",
+     "name": "web beacon",
+     "description": "method using server metrics for a served unobtrusive file to ascertain whether a page has been loaded and by whom",
+     "sameAs": [
+      "https://www.wikidata.org/wiki/Q247213",
+      "https://en.wikipedia.org/wiki/Special:EntityPage/Q247213"
+     ]
+    },
+    {
+     "@type": "Thing",
+     "name": "DNS over HTTPS",
+     "description": "protocol to run DNS queries over HTTPS",
+     "sameAs": [
+      "https://www.wikidata.org/wiki/Q50826096",
+      "https://en.wikipedia.org/wiki/Special:EntityPage/Q50826096"
+     ]
+    },
+    {
+     "@type": "Thing",
+     "name": "European Data Protection Board",
+     "description": "body of the European Union ensure that data privacy laws are consistently applied in the EU countries",
+     "sameAs": [
+      "https://www.wikidata.org/wiki/Q26877724",
+      "https://en.wikipedia.org/wiki/Special:EntityPage/Q26877724"
+     ]
+    },
+    {
+     "@type": "Thing",
+     "name": "Federal Trade Commission",
+     "description": "United States federal government agency",
+     "sameAs": [
+      "https://www.wikidata.org/wiki/Q786713",
+      "https://en.wikipedia.org/wiki/Special:EntityPage/Q786713"
+     ]
+    }
+   ],
+   "isAccessibleForFree": true,
+   "wordCount": 4103,
+   "articleSection": "Data Privacy & Your Digital Footprint",
+   "keywords": "RAJA89, data privacy, digital footprint, online tracking, browser privacy, app permissions, data protection rights, GDPR access request, CCPA opt out, data broker removal",
+   "isPartOf": {
+    "@id": "https://raja89official.site/#website"
+   }
+  },
+  {
+   "@type": "Person",
+   "@id": "https://raja89official.site/support.html#author",
+   "name": "Edi Rahmadani",
+   "url": "https://raja89official.site/support.html",
+   "description": "Edi Rahmadani is the author and self-reviewer of RAJA89, an independent educational resource on data privacy.",
+   "worksFor": {
+    "@id": "https://raja89official.site/#organization"
+   },
+   "mainEntityOfPage": {
+    "@id": "https://raja89official.site/support.html"
+   },
+   "knowsAbout": [
+    "Data privacy",
+    "Digital footprint",
+    "Online tracking",
+    "Browser privacy",
+    "Mobile app permissions",
+    "Data broker removal",
+    "Data protection rights",
+    "GDPR and CCPA rights",
+    "Digital literacy education"
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "@id": "https://raja89official.site/tracking.html#breadcrumb",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "RAJA89 home",
+     "item": "https://raja89official.site/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "How online tracking works",
+     "item": "https://raja89official.site/tracking.html"
+    }
+   ]
+  }
+ ]
+}
+</script>
+<!-- Brand entity note: when this site has a profile the maintainer genuinely controls and can be
+     verified at (an official repository, a professional profile, a verified social account),
+     add it to the Organization block above as:  "sameAs": ["https://...", "https://..."]
+     Only list profiles you actually own and can log in to. A fabricated sameAs breaks the
+     entity association rather than building it, which is the opposite of the intent here. -->
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site">
+ <div class="wrap bar">
+  <input class="nav-toggle" type="checkbox" id="nav-toggle" aria-label="Show the section menu">
+  <a class="brand" href="index.html"><picture><source srcset="assets/logo.webp" type="image/webp"><img class="logo" src="assets/logo.png" width="260" height="108" decoding="async" alt="RAJA89 - Data Privacy &amp; Your Digital Footprint"></picture><span class="visually-hidden">RAJA89 home</span></a>
+  <label class="nav-btn" for="nav-toggle"><svg class="open-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6 18 18M18 6 6 18"/></svg><span>Menu</span></label>
+  <a class="btn-official" href="https://raja89official.site/" target="_blank" rel="nofollow noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7"/><path d="M21 3 11 13"/><path d="M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5"/></svg><span class="label-long">RAJA89 official site</span><span class="label-short">Official site</span><span class="visually-hidden"> (opens in a new tab)</span></a>
+  <nav class="main-nav" aria-label="Main"><a href="index.html">Home</a><a href="faq.html">FAQ</a><a href="support.html">Support</a></nav>
+ </div>
+</header>
+<div class="hero" id="top">
+ <div class="wrap">
+  <span class="kicker">Guide 1 of 4 - Tracking</span>
+  <h1>How Online Tracking Actually Works: A RAJA89 Guide</h1>
+  <div class="lede"><p>Tracking is not one technique but several, and they fail against different defences. Blocking third-party cookies does nothing about fingerprinting. Clearing history does nothing about a profile held on someone else's server. A VPN does nothing about the account you are signed into.</p><p>This guide separates the mechanisms: cookies that follow you and cookies that do not, invisible pixels, device fingerprinting, identity carried in a URL, advertising identifiers, and the server-side transfers your browser never sees.</p></div>
+  <p class="meta"><span>Last reviewed 8 October 2026</span><span>Free to read, no sign-up</span><span>Part of the RAJA89 guides</span></p>
+  <p class="actions"><a class="btn-official big" href="https://raja89official.site/" target="_blank" rel="nofollow noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7"/><path d="M21 3 11 13"/><path d="M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5"/></svg>Visit the official RAJA89 website<span class="visually-hidden"> (opens in a new tab)</span></a><span class="aside">Opens the official RAJA89 website in a new tab.</span></p>
+  
+ </div>
+</div>
+<nav class="crumbs wrap" aria-label="Breadcrumb"><ol><li><a href="index.html">RAJA89 home</a></li><li aria-current="page">How online tracking works</li></ol></nav>
+<main id="main" class="wrap">
+
+<section class="topic" id="what-a-footprint-is">
+<h2>What a Digital Footprint Actually Is</h2>
+<p>A <strong>digital footprint</strong> is the sum of what is recorded about you as you use the internet: what you typed, where you went, what you tapped, how long you looked, and which device you were holding. It is not one database. It is hundreds, held by companies you have never heard of, joined together by identifiers that were designed to be joined.</p>
+<p>The useful distinction is between the two ways data about you comes into existence.</p>
+<ul>
+<li><strong>Active footprint</strong> - what you deliberately hand over. A sign-up form, a delivery address, a review, a photo with location data, a comment under your real name, a support ticket. You know about these, even if you do not remember them.</li>
+<li><strong>Passive footprint</strong> - what is observed about you while you do something else. Page views, click coordinates, scroll depth, the time you spent on a section, your IP address, your device's exact model, the other tabs that were open, and the fact that the same device appeared on three unrelated websites within a minute. You never agreed to this in any meaningful sense, and mostly you never see it.</li>
+</ul>
+<p>Most privacy advice concentrates on the first category, which is the smaller one. Deleting an old post is easy and satisfying. The observations are the part that follows you around, because they are the part you did not choose and cannot enumerate.</p>
+<p>It helps to hold three questions apart, because they have different answers. <em>What is collected?</em> <em>Who ends up holding it?</em> <em>What can actually be done about it?</em> The first is technical, the second is commercial and legal, and the third is where most of the disappointment in privacy advice comes from - because the honest answer is usually "less than you would like, but more than nothing".</p>
+</section>
+
+<section class="topic" id="cookies">
+<h2>Cookies, and Which Ones Actually Follow You</h2>
+<p>A <strong>cookie</strong> is a small piece of text a site asks your browser to store and send back on later requests. That mechanism is not sinister: it is how a shopping basket remembers what you put in it, and how a site knows you are still logged in. Calling all cookies "trackers" is one of the reasons the discussion is so confusing.</p>
+<p>The distinction that matters is not cookie versus no cookie. It is <strong>first-party</strong> versus <strong>third-party</strong>, and same-site versus cross-site.</p>
+<ul>
+<li><strong>First-party cookies</strong> are set by the site you actually visited. They support logins and preferences. They can still profile you intensively on that one site - a news publisher knows exactly which articles you read - but they do not follow you elsewhere on their own.</li>
+<li><strong>Third-party cookies</strong> are set by an embedded script, pixel or iframe from a different company loaded into the page. Because that same company is embedded across thousands of sites, the identifier it sets can appear on all of them, which is what "following you around the internet" describes in its original form.</li>
+</ul>
+<p>Where the major browsers stand is worth checking rather than assuming, because the summaries are usually out of date.</p>
+<ul>
+<li><strong>Safari</strong> blocks third-party cookies by default, following its Intelligent Tracking Prevention work, and also caps the lifetime of script-set first-party cookies. It is the default position on iOS and macOS.</li>
+<li><strong>Firefox</strong> partitions rather than blocks them. Total Cookie Protection gives each top-level site its own cookie jar, so an embedded network receives a different identifier on each site and cannot join them into one profile. The cookie still works; it simply stops being a cross-site key.</li>
+<li><strong>Brave</strong> blocks third-party cookies by default, and blocks or partitions much else besides.</li>
+<li><strong>Edge</strong> blocks known trackers on its Balanced setting and more on Strict, while leaving the underlying mechanism in place.</li>
+<li><strong>Chrome</strong> allows third-party cookies by default in ordinary windows. Google announced a phase-out in 2020, moved the date repeatedly, and ultimately changed course: it now keeps third-party cookies while offering a user choice, and has been retiring most of the Privacy Sandbox proposals that were meant to replace them. Incognito does block them, and Chrome supports partitioned cookies, which it calls CHIPS - a widget keeps its state on one site without carrying identity between sites.</li>
+</ul>
+<p>For a reader in 2026 the practical position is: blocked by default in some browsers, partitioned in another, and still alive in the most widely used one. Check your own browser's setting rather than trusting a headline, and see <a href="browser-privacy.html">hardening your browser</a> for where that setting lives.</p>
+</section>
+
+<section class="topic" id="beacons">
+<h2>Pixels, Beacons and Email Open Tracking</h2>
+<p>A <strong>web beacon</strong> - also called a tracking pixel, clear GIF or 1x1 image - is an invisible image embedded in a page or an email. Your browser or mail client requests it in order to render the page, and the request itself carries the information: which server, which identifier, at what time, from which IP address. There is nothing to accept or decline. No script runs, and no cookie needs to be set for the observation to happen.</p>
+<p>Email is where this matters most, because the tracking is per-recipient. A newsletter sends the same content with a different image URL to each subscriber. The URL itself is the identifier, so when the image loads, the sender knows precisely which address opened the message, at what time, from roughly where, and what kind of device it was. Open rates in marketing are not measured; they are recounted from these requests.</p>
+<p>Three defences, in decreasing order of completeness:</p>
+<ul>
+<li><strong>Stop remote images loading automatically.</strong> Most mail clients have this setting, and in a dedicated app it is usually under the account's privacy or security options. You then approve images per sender, which breaks most email open tracking outright.</li>
+<li><strong>Understand what a proxy does.</strong> Some mail providers fetch images through their own servers, so the sender sees the provider, not you. That hides your IP address and location but not the fact that the message was opened, because the provider's fetch is still triggered by your reading it.</li>
+<li><strong>Expect links to be tracked regardless.</strong> A tracked link is often rewritten to pass through the sender's redirect domain before it reaches the destination. Blocking images does not prevent that; it is visible in the status bar when you hover.</li>
+</ul>
+<p>The same technique appears outside email. A pixel in a page, a tracking script loaded from a "first-party" subdomain, an invisible iframe that loads a third-party domain - each produces a request to somebody's server that says a device was there.</p>
+</section>
+
+<section class="topic" id="fingerprinting">
+<h2>Fingerprinting: Identifying the Device Instead of the Cookie</h2>
+<p>Cookies can be blocked, partitioned or deleted. A <strong>fingerprint</strong> cannot, because it is not stored on your device at all. It is derived from what your browser tells every site it visits, and then computed server-side.</p>
+<p>The ingredients are individually innocuous: your screen resolution and available size, device pixel ratio, operating system and version, browser and version, the exact list of installed fonts, the graphics driver and its rendering quirks, your time zone, your language settings, how many processor cores you have, how your device handles certain drawing operations, whether a dark-mode preference is set, and on some systems the precise audio and canvas outputs. Each is common. The combination is not.</p>
+<p>Measurements in this area repeatedly find that a large fraction of ordinary browsers produce a fingerprint that is unique among the sample, and that the fingerprint is stable for weeks or months. EFF's <a href="https://coveryourtracks.eff.org/" rel="nofollow noopener" target="_blank">Cover Your Tracks</a> tool will show you your own, alongside a picture of how distinctive it is. Looking at your own result is more instructive than reading about the technique, because the surprise is usually how few browsers resemble yours.</p>
+<p>The awkward part is that the countermeasures are themselves detectable. Blocking canvas reads, spoofing the user-agent string, or randomising screen dimensions produces a browser that behaves unlike any real one, and a distinctive anti-fingerprinting configuration can be more identifiable than the thing it replaced. This is the <strong>fingerprinting paradox</strong>: to be unremarkable you must look like everybody else, which is precisely what the statistical technique measures.</p>
+<p>What helps in practice is blending in rather than standing out:</p>
+<ul>
+<li>A browser with a large user base, updated promptly, whose fingerprint is whatever that browser's default is.</li>
+<li>Resisting the urge to install a dozen extensions, since each adds detectable surface.</li>
+<li>Accepting cookie clearing as imperfect - a fingerprint survives it - and treating fingerprinting as a reason to keep your browser ordinary rather than exotic.</li>
+</ul>
+</section>
+
+<section class="topic" id="link-decoration">
+<h2>Link Decoration: Identity Carried in the URL</h2>
+<p>Tracking parameters are the least technical and most easily defeated form of tracking, which is why it is odd how rarely the fix is mentioned.</p>
+<p>When you click a link in a newsletter, a search result or a social post, the URL often carries extra fields: <code>utm_source</code>, <code>utm_campaign</code>, <code>gclid</code>, <code>fbclid</code>, <code>igshid</code>, <code>mc_eid</code>, and dozens more. Their official purpose is attribution - which campaign produced this visit. Their effect is to tell the destination site exactly where you came from, and in some cases to hand it an identifier that links the visit to a profile held by the platform you clicked from.</p>
+<p>They also leak in the other direction. When you copy a link from a page into a message, a document, a bug report or a public post, the parameters travel with it, exposing where you were, what you were reading, and sometimes an identifier tied to your account.</p>
+<div class="callout ok">
+<p><strong>The habit:</strong> before sharing a link, delete everything from the first <code>?</code> onwards, then load it once to confirm the page still works. Most of the time it does. When it does not, keep only the parameters the page genuinely needs.</p>
+</div>
+<p>Some sites have started stripping known tracking parameters from links that users paste into their own posts, which is a useful default and a rare example of a platform reducing its own data collection.</p>
+</section>
+
+<section class="topic" id="mobile-ids">
+<h2>Mobile Advertising Identifiers, and What Replaced Them</h2>
+<p>Phones never needed cookies. Each mobile platform issued a device-wide advertising identifier - the Identifier for Advertisers on iOS and the Advertising ID on Android - readable by any installed app. That single value meant any two apps could compare notes and discover they were installed on the same device, which is how your behaviour in one app became an advertisement in another.</p>
+<p>Apple changed the default in iOS 14.5 in 2021 with <a href="https://developer.apple.com/documentation/apptrackingtransparency" rel="nofollow noopener" target="_blank">App Tracking Transparency</a>: an app must ask through a system prompt before reading that identifier or tracking you across other companies' apps and websites. Asked plainly and in the user's own interest, most people decline. On iOS, Settings then Privacy and Security then Tracking shows which apps asked and lets you switch off future requests entirely.</p>
+<p>On Android, the advertising ID can be deleted under Settings, then Privacy, then Ads - the exact path varies by manufacturer - after which apps requesting it receive a string of zeros. Google's Privacy Sandbox for Android has been developing a replacement, so expect the mechanism to shift rather than disappear.</p>
+<p>One convenient identifier went away. Mobile tracking did not. Attention moved to signals the platform does not gate:</p>
+<ul>
+<li><strong>The account you are signed in with</strong>, which links activity across every app from the same publisher and across the platform's own surfaces.</li>
+<li><strong>Your email address</strong>, hashed and used as a common key between companies - the basis of identity graphs, described below.</li>
+<li><strong>Your IP address</strong>, which indicates rough location and, combined with timing, can link sessions.</li>
+<li><strong>Probabilistic matching</strong> from weaker signals: device model, operating system version, screen size, language and time zone.</li>
+<li><strong>Server-side events</strong>, which never pass through your device at all.</li>
+</ul>
+<p>The permission screen changes what an app may read. It does not change what an app already knows because you signed in. See <a href="app-permissions.html">app permissions and data minimisation</a> for the settings that do bite.</p>
+</section>
+
+<section class="topic" id="identity-graphs">
+<h2>Server-Side Tracking and Identity Graphs</h2>
+<p>Every mechanism so far passes through your device, which is why your settings can affect it. A growing share of tracking no longer does.</p>
+<p>In <strong>server-side tracking</strong>, the seller's own server sends the event to the advertising platform directly: this order, this value, this hashed email address, this click identifier. Your browser never contacts the platform, so a content blocker, a cookie setting and a private window have nothing to act on. You cannot see the transfer, and no consent banner in your browser intercepts it. A companion technique serves the tracking script from a subdomain of the site you are visiting, so it appears first-party, receives first-party cookie lifetimes, and still resolves to the vendor.</p>
+<p>Those events are then joined in an <strong>identity graph</strong>, usually keyed on a hashed email address. Hashing is often presented as anonymisation. It is not. A hash is deterministic: the same address always produces the same string, which is exactly what makes it useful as a shared key between two companies that both hold your email. And the space of plausible email addresses is small enough to enumerate and test against. Treat a hashed email as a pseudonym, not as anonymity.</p>
+<p>The same logic merges devices. One account used on a laptop and a phone marks those devices as one person; a shared home IP address can group a household; a payment card used in both an app and a browser ties the two together.</p>
+<p>None of this is reachable through a browser setting. It is limited by law and by contract rather than by your configuration, which is why <a href="data-rights.html">exercising your data rights</a> is the only real lever over data that has already left your device.</p>
+</section>
+
+<section class="topic" id="private-browsing">
+<h2>What Private Browsing Does and Does Not Do</h2>
+<p>Private, incognito and InPrivate windows are consistently misunderstood in both directions - treated as anonymity by some people, and as useless by others. Both are wrong.</p>
+<h3>What it does</h3>
+<ul>
+<li>Does not keep local history, form data or new cookies after you close the window.</li>
+<li>Starts each session without your existing cookies, so you are logged out of accounts unless you sign in during that session.</li>
+<li>Blocks third-party cookies in Chrome, where ordinary windows do not.</li>
+<li>Keeps one private window separate from another in most browsers, so two sessions cannot see each other's logins.</li>
+</ul>
+<h3>What it does not do</h3>
+<ul>
+<li><strong>It does not hide your activity from your network.</strong> Your employer, your school, your internet provider and anyone on the same Wi-Fi can still see which domains you contact.</li>
+<li><strong>It does not hide anything from the sites you visit.</strong> Your IP address, your fingerprint and anything you type are all visible to them, and server-side tracking is unaffected.</li>
+<li><strong>It does not make you anonymous.</strong> A distinctive fingerprint is just as distinctive in a private window.</li>
+<li><strong>It does not hide activity from the platform operator.</strong> Google is explicit that incognito browsing is not invisible to Google itself, and a signed-in browser account can associate activity regardless of the window type.</li>
+<li><strong>It does not stop downloads or bookmarks</strong> saved during the session, and it does not protect against malware or extensions, which run in private windows too.</li>
+</ul>
+<p>Private browsing is best understood as <em>local cleanup</em>: a way to keep one session's cookies and history off your device and out of your logged-in profile. It is a good tool for reading something you would rather not have in your history, for logging into a second account on the same site, and for checking what a page looks like to a first-time visitor. It is not a privacy tool in the sense most people mean.</p>
+</section>
+
+<section class="topic" id="page-faq"><h2>Questions readers ask about this page</h2><details class="faq"><summary>Do I need to accept all cookies to use a website?</summary><div><p>Usually not. Strictly necessary cookies are covered by legitimate interest or a similar basis and are normally exempt from consent, but that category means what it says: session management, security tokens, load balancing, and remembering a consent choice. Analytics, personalisation and advertising are not necessary, and refusing them should not degrade the service. In the EU and UK, a site that refuses to work without advertising cookies is on weak ground, although enforcement varies.</p></div></details><details class="faq"><summary>If I block third-party cookies, am I no longer tracked?</summary><div><p>You are less tracked by that particular method, and the method is not the whole picture. First-party cookies on a single site still profile your behaviour there, server-side events never reach your browser to be blocked, and fingerprinting does not need a cookie at all. Blocking third-party cookies is worth doing, and it is a layer rather than a solution.</p></div></details><details class="faq"><summary>My anti-tracking tool says it blocks fingerprinting. Does it?</summary><div><p>Be sceptical. Fingerprinting defences fall into two families: ones that make your browser look like everybody else's, and ones that make it look unusual, which can make you easier to single out. A tool that randomises values on every visit can create a fingerprint that is unstable but unmistakable. The most reliable posture is an ordinary, current browser with few modifications, and you can test the result yourself with EFF's Cover Your Tracks tool.</p></div></details><details class="faq"><summary>Can a tracking pixel tell whether I opened an email?</summary><div><p>Yes, in most configurations. The image URL is unique per recipient, so when it loads the sender learns which address opened the message, roughly when, and from about where. Switching off automatic image loading in your mail client breaks it in most cases. A provider that proxies images hides your IP address and location but not that the message was opened.</p></div></details><details class="faq"><summary>Does incognito mode hide what I do from my employer or ISP?</summary><div><p>No. Private browsing removes local traces from your own device at the end of a session. Your network operator, your employer's network and anyone sharing the connection can still see which domains you contact, and the sites you visit can still see your IP address and browser fingerprint.</p></div></details><p class="backtop"><a href="#top">Back to top &uarr;</a></p></section>
+<section class="related"><h2>Where to go next</h2><ul class="cards"><li><a class="card-link" href="browser-privacy.html"><strong>Hardening Your Browser and Devices</strong><span>The settings that change what actually gets collected.</span><span class="go">Read &rarr;</span></a></li><li><a class="card-link" href="app-permissions.html"><strong>App Permissions and Data Minimisation</strong><span>What your phone hands over, and how to take it back.</span><span class="go">Read &rarr;</span></a></li><li><a class="card-link" href="data-rights.html"><strong>Exercising Your Data Rights</strong><span>The legal lever over data that has already left your device.</span><span class="go">Read &rarr;</span></a></li><li><a class="card-link" href="faq.html"><strong>RAJA89 FAQ</strong><span>Short answers to the questions readers send most often.</span><span class="go">Read &rarr;</span></a></li></ul></section><details class="sources"><summary>Sources checked for this page</summary><ul><li><a href="https://developer.mozilla.org/en-US/docs/Web/Privacy" rel="nofollow noopener" target="_blank">MDN - Web privacy: cookies, storage, fingerprinting and partitioning</a></li><li><a href="https://coveryourtracks.eff.org/" rel="nofollow noopener" target="_blank">EFF Cover Your Tracks - test your own browser fingerprint</a></li><li><a href="https://ssd.eff.org/module/how-to-enable-tracking-protection" rel="nofollow noopener" target="_blank">EFF Surveillance Self-Defense - tracking protection</a></li><li><a href="https://developer.apple.com/documentation/apptrackingtransparency" rel="nofollow noopener" target="_blank">Apple - App Tracking Transparency</a></li><li><a href="https://support.google.com/chrome/answer/95647" rel="nofollow noopener" target="_blank">Google Chrome Help - delete, allow and manage cookies</a></li><li><a href="https://privacysandbox.com/news/privacy-sandbox-next-steps/" rel="nofollow noopener" target="_blank">Privacy Sandbox - next steps announcement</a></li><li><a href="https://web.dev/articles/third-party-cookie-phaseout" rel="nofollow noopener" target="_blank">web.dev - third-party cookie status and CHIPS partitioning</a></li></ul></details>
+
+<section class="trust" id="about">
+ <h2>About RAJA89</h2>
+ <p><strong>RAJA89</strong> is an independent educational project written by one person. It is not a company, an agency or a managed editorial team, and it does not pretend to be one. Edi Rahmadani writes these pages, checks them against the primary sources cited on each one, and answers corrections sent to the address on the <a href="support.html">support page</a>.</p>
+ <p>RAJA89 is the name the site publishes under; the name above is the person accountable for what it says. Nothing here is generated and published unread: a claim either traces to a source you can open yourself, or it is marked as the author's own judgement.</p>
+
+ <h3>How this site is funded</h3>
+ <p>It is not. There is no advertising, no sponsorship, no affiliate link, no paid placement and no product for sale anywhere on this site. No company pays to be mentioned, and no page carries a commission-bearing link. Hosting is paid for out of the author's own pocket, which is the whole of the commercial relationship. If that ever changes, the change will be disclosed on this page before it appears anywhere else.</p>
+
+ <h3>How to read this site</h3>
+ <ul>
+  <li><strong>Primary sources only.</strong> Where a claim can be checked, it links to the standards body, regulator or vendor documentation that supports it &mdash; not to another summary of it.</li>
+  <li><strong>Limits are stated.</strong> Where a control fails, or a setting only partly helps, the page says so in the same breath as the advice.</li>
+  <li><strong>Country-specific answers are labelled.</strong> Reporting routes, consumer protections and privacy law differ by country, so a passage that applies in only one is marked as such.</li>
+  <li><strong>No fear as a sales tool.</strong> Scaring a reader into a purchase is the behaviour this site exists to argue against.</li>
+ </ul>
+
+ <h3>Editorial standards we hold ourselves to</h3>
+ <ul>
+  <li>We do not quote a statistic without naming the report and its year.</li>
+  <li>We do not name a step-by-step settings path unless the vendor's own documentation still shows it.</li>
+  <li>We do not present a product as the answer. Where a category of tool helps, we describe the category and what to look for in it.</li>
+  <li>We do not write in the voice of expertise we do not have. When a question needs a lawyer, a doctor or a regulator, the page says so and stops.</li>
+  <li>We do not silently rewrite a substantive claim. Material corrections are recorded with a dated note on the page, as described on the <a href="support.html">support page</a>.</li>
+ </ul>
+
+ <h3>Dates, and what they mean</h3>
+ <p>The date below is the last time these pages were re-checked against the sources they cite. It is a record of what happened, not a schedule: <strong>no page here states a calendar interval for review, because a static site cannot enforce one.</strong> Pages are re-checked when something they describe actually changes &mdash; a vendor renames a setting, a standard is revised, a regulation is amended, a link breaks &mdash; and at least once a year regardless, so that nothing is left unexamined through neglect.</p>
+ <p>The date moves only when a person has re-opened the cited sources and confirmed the text still matches them. It is not the date a file was last saved. Where a passage has been left standing but is no longer certain, it is marked as uncertain rather than quietly carried forward.</p>
+ <p><strong>If the date below looks old, that is information, not a fault.</strong> It means the pages are due for their next pass. Everything on them links its primary source precisely so you can check the current position yourself rather than relying on our copy of it.</p>
+
+ <h3>Who is accountable for this page</h3>
+ <div class="tablewrap">
+ <table class="facts">
+  <tbody>
+   <tr><th scope="row">Published by</th><td data-label="Published by">RAJA89, an independent educational project written and paid for by Edi Rahmadani</td></tr>
+   <tr><th scope="row">Written by</th><td data-label="Written by">Edi Rahmadani &mdash; an independent writer, publishing under the RAJA89 name. No employer, qualification or years of experience is claimed here, because this site asserts only what can be checked.</td></tr>
+   <tr><th scope="row">Reviewed by</th><td data-label="Reviewed by">Edi Rahmadani. This site has no separate reviewer, and we do not name one to look better. Every page is self-reviewed against the sources it cites, and that is exactly what the review record below means.</td></tr>
+   <tr><th scope="row">Corrections</th><td data-label="Corrections"><a href="support.html">Send a correction</a> &mdash; specific reports are checked against a primary source and fixed or answered</td></tr>
+   <tr><th scope="row">First published</th><td data-label="First published">2026-10-08</td></tr>
+   <tr><th scope="row">Last reviewed</th><td data-label="Last reviewed">2026-10-08 &mdash; every page on this site carries the same review date, and each one links the sources it was checked against</td></tr>
+  </tbody>
+ </table>
+ </div>
+
+ <h3 id="contact-details">Contact</h3>
+ <p>Corrections, factual disputes, reports of a link that now leads somewhere harmful, and notices that a described setting has moved are all welcome at the address below. Edi Rahmadani reads them.</p>
+ <div class="contactcard">
+  <p class="contactmail"><a href="mailto:raja89officials@gmail.com">raja89officials@gmail.com</a></p>
+  <p class="contactmeta">One person, checking messages between other work. Reports that name the passage and the source they disagree with are answered fastest &mdash; the <a href="support.html">support page</a> sets out exactly what to include, and what we cannot help with.</p>
+ </div>
+ <p class="callout warn"><strong>We will never ask you for a password, a one-time code, a recovery code or remote access to your device</strong>, and we will never ask you to confirm account details by replying to a message. Any message claiming to come from this site and asking for any of that is not from us.</p>
+
+ <h3 id="scope">Scope and limitations</h3>
+ <p>Read this before acting on anything here.</p>
+ <ul>
+  <li><strong>This is general education, not advice for your situation.</strong> It explains how data collection and privacy controls generally work, and which rights a reader may have. It is not legal advice and reading it creates no professional relationship. It is not an assessment of your situation: we do not know your accounts, devices, employer policies or past breaches. And it is not anonymity &mdash; reducing a footprint lowers how much is collected and how easily it is linked to you, and it cannot erase what has already been gathered or sold.</li>
+  <li><strong>We cannot see your accounts or your devices.</strong> We cannot tell you whether a particular message you received is genuine, whether an account has been compromised, or what an organisation holds about you.</li>
+  <li><strong>We cannot act on your behalf.</strong> We cannot contact a platform, bank, regulator or data protection authority for you, and we cannot investigate anyone. Requests like that have to go to the provider directly.</li>
+  <li><strong>Menus move.</strong> Settings are renamed, moved and reset by updates. A click path that was accurate on the review date may look different in your version. Treat every step here as a description of what to look for rather than a guarantee of what you will see.</li>
+  <li><strong>We can be wrong.</strong> Errors get through. If you find one, the <a href="support.html">support page</a> explains what happens next.</li>
+ </ul>
+</section>
+
+<p class="backtop"><a href="#top">Back to top &uarr;</a></p>
+</main>
+
+<footer class="site">
+ <div class="wrap">
+  <div class="foot-grid">
+   <div class="foot-col">
+    <p class="foot-logo"><picture><source srcset="assets/logo.webp" type="image/webp"><img class="logo foot-mark" src="assets/logo.png" width="260" height="108" decoding="async" alt="RAJA89 - Data Privacy &amp; Your Digital Footprint"></picture></p>
+    <p class="foot-topic">Data Privacy &amp; Your Digital Footprint</p>
+    <p class="foot-note">Free to read. No advertising, no affiliate links, no sign-up, and nothing to buy.</p>
+   </div>
+   <nav class="foot-nav" aria-label="Footer">
+    <p class="foot-head">Start here</p>
+    <ul><li><a href="index.html">Home</a></li><li><a href="tracking.html">Tracking</a></li><li><a href="browser-privacy.html">Browser Privacy</a></li><li><a href="app-permissions.html">App Permissions</a></li><li><a href="data-rights.html">Your Data Rights</a></li><li><a href="faq.html">FAQ</a></li><li><a href="support.html">Support</a></li></ul>
+   </nav>
+   <div class="foot-col">
+    <p class="foot-head">Official site</p>
+    <p><a class="foot-official" href="https://raja89official.site/" target="_blank" rel="nofollow noopener">RAJA89 official site <span aria-hidden="true">&rarr;</span></a></p>
+    <p class="foot-note">This educational site is published on GitHub Pages and links out to the official RAJA89 website, which is operated separately from it.</p>
+   </div>
+  </div>
+  <div class="foot-legal">
+   <p>Educational information only. Not legal advice, not an individual security or privacy assessment, and not incident response.</p>
+   <p>&copy; 2026 RAJA89. Last reviewed 8 October 2026. Built as a static site: no cookies, no analytics, no trackers, no JavaScript.</p>
+  </div>
+ </div>
+</footer>
+
+</body>
+</html>
